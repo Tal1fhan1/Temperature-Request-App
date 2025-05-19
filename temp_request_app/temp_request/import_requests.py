@@ -6,8 +6,6 @@ from dotenv import find_dotenv, load_dotenv
 from paho import mqtt
 
 
-
-
 def on_connect(client, userdata, flags, rc, properties=None):
     print("CONNACK received with code %s." % rc)
 
@@ -141,7 +139,10 @@ def main(item_uuids, room_uuid):
 
     client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 
-    client.username_pw_set("Tal1fhan1", "1FourAll")
+    username = os.getenv('HIVE_USERNAME');
+    password = os.getenv('HIVE_PASSWORD');
+    
+    client.username_pw_set(username, password)
 
     client.connect("4e7484bd490942099996a545d81d84ef.s1.eu.hivemq.cloud", 8883)
 
