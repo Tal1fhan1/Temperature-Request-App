@@ -29,13 +29,13 @@ def temperature_request(request):
     # user_input9 = request.GET.get('input9', '')
     # user_input10 = request.GET.get('input10', '')
     
-    user_room_input = 'ee47fba3-b715-434e-ba78-d7b962483e8c'
-    user_input1 = '88fd4933-05fe-45e7-84b5-4322be461065'
-    user_input2 = 'cb95f408-a1f6-4faa-8d4a-b7ffb64465e3'
-    user_input3 = '293ead57-750f-4762-8548-a2c29acf4acc'
-    user_input4 = 'bbaafef6-02f7-446e-84e2-42d9f9459b3d'
-    user_input5 = '78b6c72c-e8e7-419f-b988-b574a147be13'
-    user_input6 = 'b4564b30-7300-4692-adbe-606ebad52096'
+    user_room_input = '3b0ef5f0-b51d-46d1-a487-a306936391c9'
+    user_input1 = '45ad8ec0-6990-4107-adc7-d09699346580'
+    user_input2 = '31bc6c73-38c5-4c6c-ae1e-574a83fcf87d'
+    user_input3 = 'd8f58c6b-45e3-4062-a91e-8aaa19c0d2b2'
+    user_input4 = '7e0539dd-5114-45c3-b55e-4f4c6a929891'
+    user_input5 = 'f39ea2fc-5d54-4802-a63e-dcfb0c2c1d15'
+    user_input6 = 'b4dc688a-f6f9-498f-9137-06cb60f1f0b3'
     # user_input7 = '31b1aef9-657d-4d04-a7c0-d81944205620'
     # user_input8 = 'b7854ac1-650e-425b-b4c5-e9c9523c2331'
     # user_input9 = 'c89cf283-8368-4225-8642-c436c33d0052'

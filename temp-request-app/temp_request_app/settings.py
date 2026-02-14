@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['talifhani.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['talifhani.pythonanywhere.com', '127.0.0.1', 'tal1fhan1.github.io/Temperature-Request-App/']
 
 LOGIN_URL = 'login'
 
