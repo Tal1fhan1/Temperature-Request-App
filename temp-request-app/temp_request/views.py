@@ -46,7 +46,7 @@ def temperature_request(request):
 
     if user_room_input and user_input1:
         input1 = user_room_input
-        input_list = f'{user_input1} {user_input2} {user_input4}'
+        input_list = f'{user_input4} {user_input5} {user_input1} {user_input2} {user_input3} {user_input6}'
         # input_list.append(user_input2)
         # input_list.append(user_input3)
         # input_list.append(user_input4)

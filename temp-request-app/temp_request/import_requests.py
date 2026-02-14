@@ -15,7 +15,7 @@ colour_codes = {
     'Blue': [0, 0, 255],
     'Deep Sky Blue': [0, 255, 255],
     'Pastel Green': [124, 252, 0],
-    'Lemon': [255, 155, 0],
+    'Lemon': [255, 195, 0],
     'Amber': [255, 69, 0],
     'Transport Red': [255, 0, 0]
 }
@@ -51,8 +51,6 @@ def cache_rack_data(key, red, green, blue, start_pixel, end_pixel):
     data = [red, green, blue, start_pixel, end_pixel]
     cache.set(key, data)  # Store in cache
 
-# Accessing data, which might be cachedd
-
 def main(item_uuids, room_uuid):
     
     uuid_list = item_uuids.split()
@@ -60,12 +58,11 @@ def main(item_uuids, room_uuid):
     red = 0
     green = 0
     blue = 0
-    num_pixel = 1
+    num_pixel = 4
     start_pixel = 0
     end_pixel = num_pixel
     messageList = []
-    results_list.__contains__
-
+    
     for uuid in uuid_list:
         if uuid:
             readings_url = 'https://gnurr6dmoi.execute-api.eu-west-1.amazonaws.com/v1/items/' + uuid + '/readings?'
@@ -86,7 +83,7 @@ def main(item_uuids, room_uuid):
                             blue = colour[2]
                             
                             if uuid in cache:
-                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue:
+                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue and cache.get(uuid)[3] == start_pixel and cache.get(uuid)[4] == end_pixel:
                                     results_list.append(f'Rack {name} - Temperature: {temperature} \N{DEGREE sign}C; Colour: Navy')
                                     break
                                 else:
@@ -106,7 +103,7 @@ def main(item_uuids, room_uuid):
                             blue = colour[2]
                             
                             if uuid in cache:
-                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue:
+                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue and cache.get(uuid)[3] == start_pixel and cache.get(uuid)[4] == end_pixel:
                                     results_list.append(f'Rack {name} - Temperature: {temperature} \N{DEGREE sign}C; Colour: Blue')
                                     break
                                 else:
@@ -125,7 +122,7 @@ def main(item_uuids, room_uuid):
                             blue = colour[2]
                             
                             if uuid in cache:
-                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue:
+                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue and cache.get(uuid)[3] == start_pixel and cache.get(uuid)[4] == end_pixel:
                                     results_list.append(f'Rack {name} - Temperature: {temperature} \N{DEGREE sign}C; Colour: Deep Sky Blue')
                                     break
                                 else:
@@ -144,7 +141,7 @@ def main(item_uuids, room_uuid):
                             blue = colour[2]
                             
                             if uuid in cache:
-                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue:
+                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue and cache.get(uuid)[3] == start_pixel and cache.get(uuid)[4] == end_pixel:
                                     results_list.append(f'Rack {name} - Temperature: {temperature} \N{DEGREE sign}C; Colour: Pastel Green')
                                     break
                                 else:
@@ -163,7 +160,7 @@ def main(item_uuids, room_uuid):
                             blue = colour[2]
                             
                             if uuid in cache:
-                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue:
+                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue and cache.get(uuid)[3] == start_pixel and cache.get(uuid)[4] == end_pixel:
                                     results_list.append(f'Rack {name} - Temperature: {temperature} \N{DEGREE sign}C; Colour: Lemon')
                                     break
                                 else:
@@ -182,7 +179,7 @@ def main(item_uuids, room_uuid):
                             blue = colour[2]
                             
                             if uuid in cache:
-                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue:
+                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue and cache.get(uuid)[3] == start_pixel and cache.get(uuid)[4] == end_pixel:
                                     results_list.append(f'Rack {name} - Temperature: {temperature} \N{DEGREE sign}C; Colour: Amber')
                                     break
                                 else:
@@ -201,7 +198,7 @@ def main(item_uuids, room_uuid):
                             blue = colour[2]
                             
                             if uuid in cache:
-                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue:
+                                if cache.get(uuid)[0] == red and cache.get(uuid)[1] == green and cache.get(uuid)[2] == blue and cache.get(uuid)[3] == start_pixel and cache.get(uuid)[4] == end_pixel:
                                     results_list.append(f'Rack {name} - Temperature: {temperature} \N{DEGREE sign}C; Colour: Transport Red')
                                     break
                                 else:
@@ -220,17 +217,19 @@ def main(item_uuids, room_uuid):
         start_pixel += num_pixel
         end_pixel += num_pixel
         
+    finalInt = len(uuid_list) * 5
+    messageList.append(finalInt.__str__())    
     output = ' | '.join(results_list)
     payload = ','.join(messageList)
    
     client = paho.Client()
     client.on_connect = on_connect
 
-    client.connect("10.154.91.120", 1883)
+    client.connect("192.168.137.1", 1883)
 
     client.subscribe("red", qos=0)
 
-    if payload != '':
+    if payload != '' and payload.__contains__(","):
         client.publish("red", payload=payload, qos=0)
 
     return output

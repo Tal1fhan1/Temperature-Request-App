@@ -53,8 +53,8 @@ INSTALLED_APPS = [
 Q_CLUSTER = {
     'name': 'myproject',
     'workers': 8,
-    'recycle': 500,
-    'timeout': 600,
+    'recycle': 600,
+    'timeout': 500,
     'compress': True,
     'save_limit': 250,
     'queue_limit': 500,
